@@ -1,4 +1,4 @@
-from card import Card
+from Game.card import Card
 
 class Game:
     '''The responsibility of the Game class is to control the sequence of the
@@ -28,6 +28,7 @@ class Game:
             else:
                 self.card_value_1 = self.card.value
             
+            # Maybe move to the update
             # Call method to choose a second random card to compare to the 
             # first card.
             self.card.random_card()
@@ -53,6 +54,7 @@ class Game:
         print(f"The card is: {self.card_value_1}")
         choose_high_low = input("Higher or Lower? [h/l] ")
 
+        # Maybe move to update method
         # Check if user input is correct.
         if ((self.card_value_2 > self.card_value_1 and choose_high_low == "h") or
            (self.card_value_2 < self.card_value_1 and choose_high_low == "l")):
@@ -89,5 +91,4 @@ class Game:
             print()
 
 
-game = Game()
-game.start_game()
+
