@@ -12,6 +12,7 @@ class Card:
     def random_card(self):
         '''Generates a random number from 1 to 13.'''
         self.value = random.randint(1, 13)
+        return self.value
 
 
 # This was some code I used to test classes and how to access the attributes

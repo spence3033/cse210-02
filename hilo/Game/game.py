@@ -17,41 +17,42 @@ class Game:
 
         # Continue to play the game until is_playing turns False.
         while self.is_playing:
-
-            # If there is not a previous card value, game picks a random value
-            # to begin the game.
-            if self.card_value_1 == 0:
-                self.card.random_card()
-                self.card_value_1 = self.card.value
             
-            # If there is a previous card, use that value.
-            else:
-                self.card_value_1 = self.card.value
+            self.get_card_values()
+
+            print(f"The card is: {self.card_value_1}")
+
+            self.ask_for_hi_lo()
+            self.update_total_score()
+
+            print(f"Next card was: {self.card_value_2}")
+
+            self.display_score()
+            self.play_again()
+
+    def get_card_values(self):
+        '''Gives card 1 a value. Gives card 2 a value'''
+
+        # If there is not a previous card value, game picks a random value
+        # to begin the game.
+        if self.card_value_1 == 0:
+            self.card_value_1 = self.card.random_card()
             
-            # Maybe move to the update
-            # Call method to choose a second random card to compare to the 
-            # first card.
-            self.card.random_card()
-            self.card_value_2 = self.card.value
+        # If there is a previous card, use that value.
+        else:
+            self.card_value_1 = self.card_value_2
 
-            # Call the method to get user input of higher or lower. If user
-            # input is correct give 100 points to user, if incorrect user
-            # gets -75.
-            self.get_input()
+        # give card 2 a value
+        self.card_value_2 = self.card.random_card()
+            
 
-            # Call method to update the user's total score.
-            self.do_updates()
-            self.do_outputs()
-
-    def get_input(self):
+    def ask_for_hi_lo(self):
         '''Display a card value to user. Ask the user if the next card value
            will be higher (h) or lower(l) and give user 100 points if the 
            guess was correct or subtract 75 if guess was incorrect.'''
         
         # Reset the user score to zero because it only keeps track of the 
         # most recent points won or lost by the user.
-        self.score = 0
-        print(f"The card is: {self.card_value_1}")
         choose_high_low = input("Higher or Lower? [h/l] ")
 
         # Maybe move to update method
@@ -65,21 +66,20 @@ class Game:
             self.score = -75
             
 
-    def do_updates(self):
+    def update_total_score(self):
         '''Update the total score.'''
+
         self.total_score += self.score
 
-    def do_outputs(self):
-        '''Update the user of the value of the card, the score, and the
-           total score. Ask if user wants to continue to play.'''
-        
-        # Print value of second card.
-        print(f"The card was: {self.card_value_2}")
+    def display_score(self):
+        '''Display the total score.'''
 
-        # Print user's current total score.
         print(f"Your score is: {self.total_score}")
+    
+    def play_again(self):
+        '''If total score is less than 0, end game loop. If not ask user
+           to play again. '''
 
-        # If user has a total score less than 0, end game loop.
         if self.total_score <= 0:
             self.is_playing = False
 
@@ -89,6 +89,8 @@ class Game:
             continue_play = input("Play again? [y/n] ")
             self.is_playing = (continue_play == "y")
             print()
+
+        
 
 
 
