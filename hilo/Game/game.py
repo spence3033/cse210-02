@@ -50,17 +50,26 @@ class Game:
         '''Display a card value to user. Ask the user if the next card value
            will be higher (h) or lower(l) and give user 100 points if the 
            guess was correct or subtract 75 if guess was incorrect.'''
-        
+        valid_input = False
         # Reset the user score to zero because it only keeps track of the 
         # most recent points won or lost by the user.
-        choose_high_low = input("Higher or Lower? [h/l] ")
 
-        # Maybe move to update method
+        #Loops until user gives a valid input
+        while valid_input != True:
+            choose_high_low = input("Higher or Lower? [h/l] ")
+
+            # Check if user input is valid.
+            if choose_high_low.lower() != "h" and choose_high_low.lower() != "l":
+                print ("Error -Wrong input- Please try again.")
+                valid_input = False
+            else:
+                valid_input = True
+
         # Check if user input is correct.
-        if ((self.card_value_2 > self.card_value_1 and choose_high_low == "h") or
-           (self.card_value_2 < self.card_value_1 and choose_high_low == "l")):
+        if ((self.card_value_2 > self.card_value_1 and choose_high_low.lower() == "h") or
+        (self.card_value_2 < self.card_value_1 and choose_high_low.lower() == "l")):
             self.score = 100
-        
+            
         # Points if user guess is incorrect. 
         else:
             self.score = -75
@@ -87,7 +96,9 @@ class Game:
         # enters anything but "y" game exits game loop. 
         else:
             continue_play = input("Play again? [y/n] ")
-            self.is_playing = (continue_play == "y")
+             
+            self.is_playing = (continue_play.lower() == "y")
+
             print()
 
         

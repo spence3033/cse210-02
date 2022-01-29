@@ -15,10 +15,4 @@ class Card:
         return self.value
 
 
-# This was some code I used to test classes and how to access the attributes
-# and how to use the methods of the class. It is completely irrelevant and 
-# needs to be deleted before turning in our project, but if it is okay to 
-# leave it here for now, it will help me rememember.
-# card = Card()
-# card.random_card()
-# print(card.value)
+
