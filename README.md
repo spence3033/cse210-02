@@ -2,7 +2,9 @@
 
 # Group Members
 
-# Katie Blunck, Star Balls, Spencer Birch
+# Katie Blunck - blu20003@byui.edu
+# Star Balls - man95009@byui.edu
+# Spencer Birch - bir18006@byui.edu
 
 
 
